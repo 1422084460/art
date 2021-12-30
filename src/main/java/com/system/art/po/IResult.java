@@ -111,4 +111,23 @@ public class IResult extends HashMap<String,Object> {
     public static IResult fail(JSONObject data,String msg,String code){
         return IResult.create().fail().code(code).msg(msg).data(data).build();
     }
+
+    /**
+     * 判断请求是否为成功
+     * @return
+     */
+    public boolean isSuccess(){
+        if (code == null){
+            return CODE_SUCCESS.equals(get("code"));
+        }
+        return CODE_SUCCESS.equals(code);
+    }
+
+    /**
+     * 判断请求是否为失败
+     * @return
+     */
+    public boolean isFail(){
+        return !isSuccess();
+    }
 }
