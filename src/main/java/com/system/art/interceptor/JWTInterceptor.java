@@ -27,7 +27,7 @@ public class JWTInterceptor extends HandlerInterceptorAdapter {
         }catch (SignatureVerificationException e){
             e.printStackTrace();
             map = IResult.fail(null,R.MSG_TOKEN_SIGNATURE_INVALID,R.CODE_TOKEN_SIGNATURE_INVALID);
-            Store.getInstance().put("token验证",map);
+            Store.getInstance().put(name,Store.getInstance().MainDataPut("token验证",map));
         }catch (TokenExpiredException e){
             e.printStackTrace();
             map = IResult.fail(null,R.MSG_TOKEN_EXPIRE,R.CODE_TOKEN_EXPIRE);
@@ -35,11 +35,11 @@ public class JWTInterceptor extends HandlerInterceptorAdapter {
         }catch (AlgorithmMismatchException e){
             e.printStackTrace();
             map = IResult.fail(null,R.MSG_TOKEN_ALGORITHM_MISMATCH,R.CODE_TOKEN_ALGORITHM_MISMATCH);
-            Store.getInstance().put("token验证",map);
+            Store.getInstance().put(name,Store.getInstance().MainDataPut("token验证",map));
         }catch (Exception e) {
             e.printStackTrace();
             map = IResult.fail(null,R.MSG_TOKEN_INVALID,R.CODE_TOKEN_INVALID);
-            Store.getInstance().put("token验证",map);
+            Store.getInstance().put(name,Store.getInstance().MainDataPut("token验证",map));
         }
         System.out.println("进入拦截器"+token);
         return true;
